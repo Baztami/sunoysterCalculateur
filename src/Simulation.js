@@ -114,7 +114,7 @@ function Simulation() {
       Math.round(pr_thc_charge),
       Math.round(pr_thc_autres),
     ],
-    labels: ["PV Direct", "PV Decharge", "PV Reseau"],
+    labels: ["PV Direct", "PV Charge", "PV Reseau"],
     plotOptions: {
       pie: {
         expandOnClick: true,
@@ -140,7 +140,7 @@ function Simulation() {
       Math.round(prth_decharge),
       Math.round(prth_direct),
     ],
-    labels: ["PV Direct", "PV Decharge", "PV Reseau"],
+    labels: ["PV Reseau", "PV Decharge", "PV Direct"],
     plotOptions: {
       pie: {
         expandOnClick: true,
@@ -149,9 +149,7 @@ function Simulation() {
 
           labels: {
             show: true,
-            total: {
-              show: true,
-            },
+            
           },
         },
       },
@@ -165,7 +163,7 @@ function Simulation() {
   ];
   const options = {
     series: [parseInt(pr_decharge), parseInt(pr_pvd), parseInt(pr_reseau)],
-    labels: ["PV Direct", "PV Decharge", "PV Reseau"],
+    labels: ["PV Decharge", "PV Direct", "PV Reseau"],
     plotOptions: {
       pie: {
         expandOnClick: true,
@@ -174,9 +172,7 @@ function Simulation() {
 
           labels: {
             show: true,
-            total: {
-              show: true,
-            },
+            
           },
         },
       },
@@ -190,7 +186,7 @@ function Simulation() {
   ];
   const option = {
     series: [pr_pvc_charge, pr_pvc_direct, pr_pvc_injected],
-    labels: ["PV Direct", "PV Charge", "PV Injection"],
+    labels: ["PV charge", "PV Direct", "PV Injection"],
   };
 
   const serie = [pr_pvc_charge, pr_pvc_direct, pr_pvc_injected];
@@ -204,13 +200,15 @@ function Simulation() {
     type = "hybrid";
   }
 
-  const print = (e) => {
-    window.print();
-  };
-  const componentRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  
+
+
+              const componentRef = useRef(null);
+              const handlePrint = useReactToPrint({
+                content: () => componentRef.current,
+              });
+
+              
 
   return (
     <div className="wrapper">

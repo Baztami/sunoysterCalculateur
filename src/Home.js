@@ -1,10 +1,10 @@
 import React from "react";
 
-import Tilte from "./components/Title";
+ 
 import sos from "./SOS.jpg";
 import ss from "./ALBARRAY_Consulting.jpg";
 import bb from "./dynamic_so16.gif";
-import tableau from "./tableau.png"
+import tableau from "./tableau.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
@@ -112,8 +112,7 @@ function Home() {
           </table>
         </div>
         <div className="bazta">
-
-          <img src={tableau} alt="tableau des types sunOyster" id="cisco"/>
+          <img src={tableau} alt="tableau des types sunOyster" id="cisco" />
         </div>
         <p class="text-justify" id="pad">
           <strong>CALC utilise :</strong> Une base de données météorologique en

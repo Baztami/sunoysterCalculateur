@@ -21,7 +21,6 @@ import {
   registerables as registerablesJS,
 } from "chart.js";
 
- 
 import log from "./download.jpg";
 
 import {
@@ -30,14 +29,13 @@ import {
   Spinner,
   ErrorComponent,
 } from "@googlemaps/react-wrapper";
- 
 
 let isSelect = false;
 let myChar = null;
 let histgramme = null;
 let generationThAnnuel = [];
 let generationElAnnuel = [];
- 
+
 const animatedComponents = makeAnimated();
 const apiKey = "AIzaSyA-0mArLoA2qAMQxfx1GldwodYmTMaKSkQ";
 
@@ -85,32 +83,10 @@ function App(props) {
   const [sunoyster8, setSunoyster8] = useState(false);
   const [sunoyster16, setSunoyster16] = useState(false);
   const [tghi, setTghi] = useState([
-    128,
-    149,
-    191,
-    218,
-    232,
-    232,
-    226,
-    214,
-    173,
-    153,
-    113,
-    116,
+    128, 149, 191, 218, 232, 232, 226, 214, 173, 153, 113, 116,
   ]);
   const [tdni, setTdni] = useState([
-    222,
-    212,
-    229,
-    246,
-    225,
-    226,
-    192,
-    202,
-    170,
-    183,
-    155,
-    197,
+    222, 212, 229, 246, 225, 226, 192, 202, 170, 183, 155, 197,
   ]);
   console.log(nbrunite);
 
@@ -147,95 +123,91 @@ function App(props) {
     return <h1>{Status}</h1>;
   };
   const validatee = (e) => {
-
-    if(InputFacture===' ')
-    console.log(e);
+    if (InputFacture === " ") console.log(e);
   };
-  function updateTextInput(val) {
-    document.getElementById("textInput").value = val;
-  }
 
   const Add = addrtype.map((Add) => Add);
-  const handleAddrTypeChange = (e) => {
-    setConstType(e.target.value);
+  
+                        const handleAddrTypeChange = (e) => {
+                          setConstType(e.target.value);
 
-    if (!isSelect) {
-      isSelect = true;
-    } else if (isSelect) {
-      isSelect = false;
-      setfactTherm(0);
-      setConsTherm(0);
-      return;
-    }
+                          if (!isSelect) {
+                            isSelect = true;
+                          } else if (isSelect) {
+                            isSelect = false;
+                            setfactTherm(0);
+                            setConsTherm(0);
+                            return;
+                          }
 
-    if (e.target.value === "Mazout") {
-      if (isNaN(e)) {
-        let element = document.getElementById("alert");
-        element.style.display = "none";
-      }
+                          if (e.target.value === "Mazout") {
+                            if (isNaN(e)) {
+                              let element = document.getElementById("alert");
+                              element.style.display = "none";
+                            }
 
-      if (consTherm !== 0) {
-        setfactTherm((puMazout * consTherm) / ceMazout);
-      }
-      if (factTherm !== 0) {
-        setConsTherm((factTherm * ceMazout) / puMazout);
-      }
-    }
-    if (e.target.value === "Fioul") {
-      if (consTherm !== 0) {
-        setfactTherm((consTherm * puFioul) / ceFioul);
-      }
-      if (factTherm !== 0) {
-        setConsTherm((factTherm * ceFioul) / puFioul);
-      }
-    }
-    if (e.target.value === "Propane") {
-      if (consTherm !== 0) {
-        setfactTherm((consTherm * puPropane) / cePropane);
-        alert("sfdsf");
-      }
-      if (factTherm !== 0) {
-        setConsTherm((factTherm * cePropane) / puPropane);
-      }
-    }
-  };
+                            if (consTherm !== 0) {
+                              setfactTherm((puMazout * consTherm) / ceMazout);
+                            }
+                            if (factTherm !== 0) {
+                              setConsTherm((factTherm * ceMazout) / puMazout);
+                            }
+                          }
+                          if (e.target.value === "Fioul") {
+                            if (consTherm !== 0) {
+                              setfactTherm((consTherm * puFioul) / ceFioul);
+                            }
+                            if (factTherm !== 0) {
+                              setConsTherm((factTherm * ceFioul) / puFioul);
+                            }
+                          }
+                          if (e.target.value === "Propane") {
+                            if (consTherm !== 0) {
+                              setfactTherm((consTherm * puPropane) / cePropane);
+                              alert("sfdsf");
+                            }
+                            if (factTherm !== 0) {
+                              setConsTherm((factTherm * cePropane) / puPropane);
+                            }
+                          }
+                        };
 
-  const maybeConsTherm = (e) => {
-    if (isNaN(e)) {
-      let element = document.getElementById("alert");
-      element.style.display = "none";
-    }
+                        const maybeConsTherm = (e) => {
+                          if (isNaN(e)) {
+                            let element = document.getElementById("alert");
+                            element.style.display = "none";
+                          }
 
-    setConsTherm(e);
-    if (consType === "Propane") {
-      setfactTherm((e * puPropane) / cePropane);
-    }
-    if (consType === "Mazout") {
-      setfactTherm((e * puMazout) / ceMazout);
-    }
-    if (consType === "Fioul") {
-      setfactTherm((e * puFioul) / ceFioul);
-    }
-  };
-  const maybeFacTherm = (e) => {
-    if (isNaN(e)) {
-      let element = document.getElementById("alert");
-      element.style.display = "none";
-    }
+                          setConsTherm(e);
+                          if (consType === "Propane") {
+                            setfactTherm((e * puPropane) / cePropane);
+                          }
+                          if (consType === "Mazout") {
+                            setfactTherm((e * puMazout) / ceMazout);
+                          }
+                          if (consType === "Fioul") {
+                            setfactTherm((e * puFioul) / ceFioul);
+                          }
+                        };
+                        const maybeFacTherm = (e) => {
+                          if (isNaN(e)) {
+                            let element = document.getElementById("alert");
+                            element.style.display = "none";
+                          }
 
-    setfactTherm(e);
+                          setfactTherm(e);
 
-    if (consType === "Propane") {
-      setConsTherm((e * cePropane) / puPropane);
-      console.log(e);
-    }
-    if (consType === "Mazout") {
-      setConsTherm((e * ceMazout) / puMazout);
-    }
-    if (consType === "Fioul") {
-      setConsTherm((e * ceFioul) / puFioul);
-    }
-  };
+                          if (consType === "Propane") {
+                            setConsTherm((e * cePropane) / puPropane);
+                            console.log(e);
+                          }
+                          if (consType === "Mazout") {
+                            setConsTherm((e * ceMazout) / puMazout);
+                          }
+                          if (consType === "Fioul") {
+                            setConsTherm((e * ceFioul) / puFioul);
+                          }
+                        };
   const geocodeJson = "https://maps.googleapis.com/maps/api/js";
 
   useEffect(() => {
@@ -321,14 +293,14 @@ function App(props) {
     });
   });
 
-  const maybeInputFac = (e) => {
-    if (isNaN(e)) {
-      let element = document.getElementById("alert");
-      element.style.display = "none";
-    }
+              const maybeInputFac = (e) => {
+                if (isNaN(e)) {
+                  let element = document.getElementById("alert");
+                  element.style.display = "none";
+                }
 
-    setInputFac(e * 0.89);
-  };
+                setInputFac(e * 0.89);
+              };
 
   const options = [
     { value: "2th", label: "2 Tubes hybrides" },
@@ -546,12 +518,12 @@ function App(props) {
     sunoyster16: sunoyster16,
     stockageElectrique: stockageElec,
     stockagethermique: stockageTher,
-    tempFluid : tmpfluid,
-    nbrunite : nbrunite,
-    espace : esp,
+    tempFluid: tmpfluid,
+    nbrunite: nbrunite,
+    espace: esp,
   };
 
-  console.log(generationElAnnuel);
+   
   const handlePvPlus = (e) => {
     if (pvPlus.checked && typ === "2th" && ch.checked) {
       const outputEnergieElectrique =
@@ -610,7 +582,7 @@ function App(props) {
 
   console.log(energieElectrique);
 
-  const InputFacture = document.getElementById('factureElectrique')
+  const InputFacture = document.getElementById("factureElectrique");
 
   return (
     <context.Provider value={sGHI}>

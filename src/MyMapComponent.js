@@ -1,4 +1,4 @@
-import { React, useContext, useEffect, useRef, useState ,Link} from "react";
+import { React, useContext, useEffect, useRef, useState, Link } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faInfo } from "@fortawesome/free-solid-svg-icons";
 import context from "./context";
@@ -34,7 +34,7 @@ let arrayGhi = [128, 149, 191, 218, 232, 232, 226, 214, 173, 153, 113, 116],
   arrayDni = [222, 212, 229, 246, 225, 226, 192, 202, 170, 183, 155, 197];
 
 let map;
- 
+
 let geocoder;
 let geocodeString;
 let responseDiv;
@@ -68,110 +68,110 @@ function MyMapComponent() {
     contextValue.setTdni(arrayDni);
   }, [ghi, tb]);
 
-  useEffect(() => {
-    const labels = [
-      "Janvier",
-      "Fevrier",
-      "Mars",
-      "Avril",
-      "May",
-      "Juin",
-      "Juillet",
-      "Août",
-      "septembre",
-      "octobre",
-      "novembre",
-      "decembre",
-    ];
+                useEffect(() => {
+                  const labels = [
+                    "Janvier",
+                    "Fevrier",
+                    "Mars",
+                    "Avril",
+                    "May",
+                    "Juin",
+                    "Juillet",
+                    "Août",
+                    "septembre",
+                    "octobre",
+                    "novembre",
+                    "decembre",
+                  ];
 
-    if (myChart != null) {
-      myChart.destroy();
-    }
-    myChart = new ChartJS(document.getElementById("myChart"), {
-      data: {
-        labels: labels,
+                  if (myChart != null) {
+                    myChart.destroy();
+                  }
+                  myChart = new ChartJS(document.getElementById("myChart"), {
+                    data: {
+                      labels: labels,
 
-        datasets: [
-          {
-            type: "bar",
-            label: "GHI en kw/m²",
+                      datasets: [
+                        {
+                          type: "bar",
+                          label: "GHI en kw/m²",
 
-            data: ghiMonth,
+                          data: ghiMonth,
 
-            backgroundColor: "#00BFFF",
+                          backgroundColor: "#00BFFF",
 
-            borderColor: "#047baa",
+                          borderColor: "#047baa",
 
-            borderWidth: 1,
-            yAxisID: "y",
-          },
-          {
-            type: "bar",
-            label: "DNI en kw/m²",
+                          borderWidth: 1,
+                          yAxisID: "y",
+                        },
+                        {
+                          type: "bar",
+                          label: "DNI en kw/m²",
 
-            data: tempMonth,
+                          data: tempMonth,
 
-            backgroundColor: "#00FF00",
+                          backgroundColor: "#00FF00",
 
-            borderColor: "#00FF00",
+                          borderColor: "#00FF00",
 
-            borderWidth: 1,
-            yAxisID: "percentage",
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            type: "linear",
-            position: "left",
-          },
-          percentage: {
-            beginAtZero: true,
-            type: "linear",
-            position: "right",
-          },
-        },
-      },
-    });
-  }, [tempMonth, ghiMonth]);
+                          borderWidth: 1,
+                          yAxisID: "percentage",
+                        },
+                      ],
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true,
+                          type: "linear",
+                          position: "left",
+                        },
+                        percentage: {
+                          beginAtZero: true,
+                          type: "linear",
+                          position: "right",
+                        },
+                      },
+                    },
+                  });
+                }, [tempMonth, ghiMonth]);
 
-  let res = async (a, b) => {
-    let ress = await axios.get(
-      `/.netlify/functions/serverApi?lat=${a}&lon=${b}`
-    );
+                    let res = async (a, b) => {
+                      let ress = await axios.get(
+                        `/.netlify/functions/serverApi?lat=${a}&lon=${b}`
+                      );
 
-    if (ress) {
-      const tab = ress.data.outputs.monthly;
+                      if (ress) {
+                        const tab = ress.data.outputs.monthly;
 
-      arrayGhi = new Array();
-      let i = 0;
-      arrayDni = new Array();
-      let somGhi = 0,
-        somDni = 0;
+                        arrayGhi = new Array();
+                        let i = 0;
+                        arrayDni = new Array();
+                        let somGhi = 0,
+                          somDni = 0;
 
-      for (i = 0; i < 12; i++) {
-        arrayDni.push(tab[i]["Hb(n)_m"]);
-        arrayGhi.push(tab[i]["H(h)_m"]);
-        somGhi += parseInt(tab[i]["H(h)_m"]);
-        somDni += tab[i]["Hb(n)_m"];
-      }
+                        for (i = 0; i < 12; i++) {
+                          arrayDni.push(tab[i]["Hb(n)_m"]);
+                          arrayGhi.push(tab[i]["H(h)_m"]);
+                          somGhi += parseInt(tab[i]["H(h)_m"]);
+                          somDni += tab[i]["Hb(n)_m"];
+                        }
 
-      setghi(somGhi);
-      setTb(somDni);
+                        setghi(somGhi);
+                        setTb(somDni);
 
-      ghiMonth = arrayGhi;
-      tempMonth = arrayDni;
-    }
-  };
+                        ghiMonth = arrayGhi;
+                        tempMonth = arrayDni;
+                      }
+                    };
 
   function geo() {
     var address = refe.current.value;
 
     refe.current.value = null;
 
-    geocodeString.geocode({ address: address }, function(results, status) {
+    geocodeString.geocode({ address: address }, function (results, status) {
       if (status == "OK") {
         setCenter(results[0].geometry.location);
         setAddress(results[0].formatted_address);
@@ -195,15 +195,15 @@ function MyMapComponent() {
   }
 
   useEffect(
-    function() {
+    function () {
       map = new window.google.maps.Map(ref.current, {
         zoom: zoom,
         center: center,
-        gestureHandling: 'greedy'
+        gestureHandling: "greedy",
       });
 
       geocoder = new window.google.maps.Geocoder();
-      
+
       const marker = new window.google.maps.Marker({
         position: center,
         map: map,
@@ -223,7 +223,7 @@ function MyMapComponent() {
           }
         });
       }
-      window.google.maps.event.addListener(map, "zoom_changed", function() {
+      window.google.maps.event.addListener(map, "zoom_changed", function () {
         var zoom = map.getZoom();
         setZoom(zoom);
       });
