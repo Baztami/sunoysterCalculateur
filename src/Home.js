@@ -16,7 +16,7 @@ function Home() {
   const geocodeString = (searchInput) => {};
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `expenses`;
+    let path = `ConfigForm`;
     navigate(path);
   };
   return (

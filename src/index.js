@@ -23,7 +23,7 @@ import { BrowserRouter,Route,Routes } from "react-router-dom";
     <Routes>
     
       <Route path="/" element={<Home />} />
-      <Route path="expenses" element={<App />} />
+      <Route path="ConfigForm" element={<App />} />
     <Route path="/simulation" element={<Simulation />} />
        
   

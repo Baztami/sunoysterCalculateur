@@ -79,6 +79,7 @@ function App(props) {
   const [stockageElec, setStockageElec] = useState();
 
   const [stockageTher, setStockageTher] = useState();
+  const [inputFa,setInputFa]=useState()
 
   const [sunoyster8, setSunoyster8] = useState(false);
   const [sunoyster16, setSunoyster16] = useState(false);
@@ -122,8 +123,9 @@ function App(props) {
   const render = (Status) => {
     return <h1>{Status}</h1>;
   };
-  const validatee = (e) => {
-    if (InputFacture === " ") console.log(e);
+  const validatee = (e) => {  
+    
+   
   };
 
   const Add = addrtype.map((Add) => Add);
@@ -211,6 +213,7 @@ function App(props) {
   const geocodeJson = "https://maps.googleapis.com/maps/api/js";
 
   useEffect(() => {
+    
     if (histgramme != null) {
       histgramme.destroy();
     }
@@ -250,6 +253,7 @@ function App(props) {
       },
     });
   });
+  useEffect(()=>{window.scrollTo(0,0)},[])
   useEffect(() => {
     if (myChar != null) {
       myChar.destroy();
@@ -301,6 +305,15 @@ function App(props) {
 
                 setInputFac(e * 0.89);
               };
+              const maybeInputFa = (e) => {
+                if (isNaN(e)) {
+                  let element = document.getElementById("alert");
+                  element.style.display = "none";
+                }
+
+                setInputFa(e / 0.89);
+              };
+
 
   const options = [
     { value: "2th", label: "2 Tubes hybrides" },
@@ -652,6 +665,11 @@ function App(props) {
                         placeholder="saisissez le montant annuelle en DH TTC"
                         value={Math.round(inputFac)}
                         className="form-control"
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
                         onChange={(e) => setInputFac(e.target.value)}
                         required
                       />
@@ -667,6 +685,12 @@ function App(props) {
                     <div className="col-sm">
                       <input
                         className="form-control"
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
+                        
                         placeholder="saisissez le montant annuelle en DH TTC"
                         value={Math.round(inputFac / 0.89)}
                         onChange={(e) => maybeInputFac(e.target.value)}
@@ -700,6 +724,11 @@ function App(props) {
                       <input
                         className="form-control"
                         value={factTherm}
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
                         onChange={(e) => maybeFacTherm(e.target.value)}
                       />
                     </div>
@@ -712,6 +741,11 @@ function App(props) {
                       <input
                         className="form-control"
                         value={consTherm}
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
                         onChange={(e) => maybeConsTherm(e.target.value)}
                         required
                       />
@@ -724,6 +758,11 @@ function App(props) {
                     <div className="col-sm">
                       <input
                         className="form-control"
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
                         value={stockageElec}
                         onChange={(e) => {
                           setStockageElec(e.target.value);
@@ -739,6 +778,11 @@ function App(props) {
                       <input
                         className="form-control"
                         value={stockageTher}
+                        onKeyPress={(event) => {
+                          if (!/[0-9]/.test(event.key)) {
+                            event.preventDefault();
+                          }
+                        }}
                         onChange={(e) => {
                           setStockageTher(e.target.value);
                         }}

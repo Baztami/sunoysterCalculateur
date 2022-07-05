@@ -34,7 +34,9 @@ function Simulation() {
 
   const location = useLocation();
   console.log(location);
+  useEffect(()=>{window.scrollTo(0,0)},[])
   useEffect(() => {
+    
     const sunoyster16 = document.getElementById("image11");
     const sunoyster8 = document.getElementById("image22");
 
